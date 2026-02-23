@@ -21,9 +21,11 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom,
-      color-mix(in srgb, var(--black) 12%, transparent) 0%,
-      color-mix(in srgb, var(--black) 62%, transparent) 100%);
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--black) 12%, transparent) 0%,
+    color-mix(in srgb, var(--black) 62%, transparent) 100%
+  );
 }
 
 .main_visual .main_tit {
@@ -73,10 +75,6 @@
 }
 
 /* best_card */
-.best_card {
-  background: var(--gray-01);
-}
-
 .best_card .inner {
   padding: 5rem 0 4rem;
 }
@@ -113,7 +111,9 @@
   display: block;
   width: clamp(17rem, 25vw, 24rem);
   height: auto;
-  filter: drop-shadow(0 10px 24px color-mix(in srgb, var(--black) 16%, transparent));
+  filter: drop-shadow(
+    0 10px 24px color-mix(in srgb, var(--black) 16%, transparent)
+  );
 }
 
 .best_card .txts {
@@ -142,7 +142,7 @@
 }
 
 .best_card .txts h3,
-.best_card .txts>p,
+.best_card .txts > p,
 .best_card .txts em,
 .best_card .txts .more {
   width: 100%;
@@ -156,7 +156,7 @@
   letter-spacing: -0.03em;
 }
 
-.best_card .txts>p {
+.best_card .txts > p {
   color: var(--gray-08);
   font-size: clamp(1.7rem, 2.3vw, 2.1rem);
   line-height: 1.3;
@@ -215,7 +215,9 @@
   cursor: pointer;
   transform: translateY(0) scale(1);
   filter: saturate(0.58) brightness(0.78);
-  transition: transform 0.24s ease, filter 0.24s ease;
+  transition:
+    transform 0.24s ease,
+    filter 0.24s ease;
 }
 
 .best_card .bottom .card_thumb img {
@@ -245,12 +247,7 @@
   margin-left: -1.8rem;
 }
 
-
 /* event */
-.event {
-  background: var(--gray-01);
-}
-
 .event .inner {
   padding: 4rem 0;
 }
@@ -268,102 +265,92 @@
   border-radius: 0.75rem;
 }
 
-.event .contents>li {
-  flex: 0 0 100%;
-  min-height: 29rem;
+.event .contents > li {
   display: flex;
   background: var(--white);
 }
 
-.event .contents>li>[class$="_img"] {
+.event .contents > li > img {
   flex: 0 0 50%;
-  min-height: 29rem;
-  background: center center / cover no-repeat;
-  order: 2;
+  width: 50%;
+  display: block;
+  object-fit: cover;
 }
 
-.event .contents>li>[class$="_txts"] {
+.event .contents > li > img[class$="_img"] {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.event .contents > li > [class$="_txts"] {
   flex: 0 0 50%;
-  height: 467px;
-  padding: 57px 63px;
+  padding: 3.5rem 4rem;
   display: flex;
   flex-direction: column;
-  order: 1;
-  gap: 100px;
 }
 
-.event .contents .txt_t p {
+/* =========================================
+   Event 내부 텍스트 상세 스타일
+   ========================================= */
+/* 공통 폰트 설정 묶기 */
+
+.event .txts {
+  display: flex;
+  height: 467px;
+  padding: 57px 63px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 100px;
+  flex: 1 0 0;
+}
+.event .txt_t p,
+.event .txt_date p {
   color: var(--gray-08);
   font-size: var(--font_size_24);
   font-weight: 500;
   line-height: 1.35;
-
 }
 
-.event .contents .txt_tit {
-  font-family: "Spoqa Han Sans Neo";
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+.event .txt_tit {
+  font-family: var(--Spoqa-Han-Sans); /* 상단에 정의했던 변수 활용 */
+  margin-top: 2rem; /* gap: 100px 대신 margin 활용 */
+  margin-bottom: auto; /* 날짜 영역을 컨테이너 맨 아래로 쫙 밀어냄 */
 }
 
-.event .contents .txt_tit em {
+.event .txt_tit em {
   display: block;
   color: var(--loca-black);
-  font-style: normal;
   font-size: clamp(2.4rem, 2.8vw, 3.6rem);
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.01em;
 }
 
-.event .contents .txt_date {
-  margin-top: auto;
-}
-
-.event .contents .txt_date p {
-  color: var(--gray-08);
-  font-size: var(--font_size_24);
-  font-weight: 500;
-  line-height: 1.2;
-}
-
-.event .contents .event_ctrl {
-  margin-top: 0.75rem;
-  margin-left: auto;
+/* =========================================
+   Event 컨트롤 버튼 (좌우 화살표)
+   ========================================= */
+.event .event_ctrl {
+  margin-left: auto; /* 오른쪽 끝으로 밀기 */
   display: inline-flex;
-  align-items: center;
   gap: 0.2rem;
 }
 
-.event .contents .event_prev,
-.event .contents .event_next {
+.event .event_prev,
+.event .event_next {
   width: 2.2rem;
   height: 2.2rem;
   border: 0;
   background: transparent;
   color: var(--loca-navy-02);
   font-size: 2rem;
+  cursor: pointer; /* 버튼엔 커서 손가락 모양 필수 */
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  transition: color 0.2s; /* 부드러운 호버 효과 추가 */
 }
 
-.event .contents .event_prev:hover,
-.event .contents .event_next:hover {
+.event .event_prev:hover,
+.event .event_next:hover {
   color: var(--loca-navy-00);
-}
-
-/* background image path only replace */
-.event .content1 .con1_img {
-  background: url(../img/event01.png) center center / cover no-repeat;
-}
-
-.event .content2 .con2_img {
-  background: url(../img/event02.png) center center / cover no-repeat;
-}
-
-.event .content3 .con3_img {
-  background: url(../img/event03.png) center center / cover no-repeat;
 }
