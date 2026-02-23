@@ -1,0 +1,579 @@
+﻿@charset "utf-8";
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+:root {
+  font-size: 16px;
+  --font_size_12: 0.75rem;
+  --font_size_14: 0.875rem;
+  --font_size_16: 1rem;
+  --font_size_18: 1.125rem;
+  --font_size_24: 1.5rem;
+  --font_size_32: 2rem;
+
+  /* Basic */
+  --black: #000000;
+  --white: #ffffff;
+  --gray-01: #F6F6F6;
+  --gray-02: #eee;
+  --gray-03: #ddd;
+  --gray-04: #A7A7A7;
+  --gray-05: #999;
+  --gray-06: #7A7A7A;
+  --gray-07: #606060;
+  --gray-08: #434343;
+  --gray-09: #2A2A2A;
+  --gray-10: #222;
+
+  /* Brand Colors */
+  --loca-black: #2C2A26;
+  --loca-cool-gray: #54565A;
+  --loca-ivory: #F6F5F3;
+  --loca-yellow-l: #F6EADA;
+  --loca-navy-00: #010045;
+  --loca-navy-01: #060D4D;
+  --loca-navy-02: #221E6A;
+  --loca-navy-03: #3D2F87;
+  --loca-purple-00: #7451C0;
+  --loca-purple-01: #D3CCFF;
+  --Spoqa-Han-Sans: 'Spoqa Han Sans Neo', sans-serif;
+
+}
+
+body {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  color: var(--loca-black);
+  background: var(--gray-07);
+}
+
+.inner {
+  width: 85%;
+  margin-inline: auto;
+}
+
+a.more {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.625rem 2rem;
+  border-radius: 555px;
+  background: var(--gray-02);
+}
+
+/* header */
+header {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  background: var(--loca-ivory);
+  transition: 0.3s ease;
+  will-change: top, backdrop-filter;
+  z-index: 10;
+}
+
+header.is_header_hidden {
+  top: var(--header_hide_offset, -7rem);
+}
+
+header.is_header_blur {
+  background: var(--loca-ivory);
+  background: color-mix(in srgb, var(--loca-ivory) 46%, transparent);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 0.5rem 1rem color-mix(in srgb, var(--gray-09) 12%, transparent);
+}
+
+header.is_all_menu_active {
+  background: var(--loca-ivory);
+  box-shadow: none;
+}
+
+header .inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .top_menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 1.25rem;
+  padding: 1rem 1rem .5rem 1rem;
+  font-size: var(--font_size_16);
+  color: var(--gray-08);
+}
+
+header .main_bottom {
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: .8rem;
+}
+
+header :is(.main_bottom, .menu, .quick_menu) {
+  display: flex;
+  align-items: center;
+}
+
+header .dep1 {
+  display: block;
+  font-size: var(--font_size_24);
+  font-weight: 600;
+}
+
+header .menu {
+  gap: 2rem;
+}
+
+header .menu>li .dep1:hover,
+header .menu_item.is_active .dep1 {
+  color: var(--loca-purple-00);
+}
+
+
+header .menu_item {
+  position: static;
+}
+
+header .sub_menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  padding: 2.5rem 0 3.5rem;
+  background: var(--white);
+  border-top: 1px solid var(--loca-navy-03);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--gray-09) 12%, transparent);
+  z-index: 20;
+}
+
+header .sub_menu_wrap,
+header .sub_menu_inner {
+  height: auto;
+  min-height: 0;
+}
+
+/* (옵션) 스크롤 내려서 헤더가 투명해졌을 때(Blur) 서브메뉴도 맞춰주기 */
+header.is_header_blur .sub_menu {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top-color: color-mix(in srgb, var(--loca-navy-03) 55%, transparent);
+}
+
+
+header .sub_menu .dep2_list {
+  width: min(85%, 1280px);
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  --line: rgba(0, 0, 0, .10);
+  --rowLineY: 0px;
+  position: relative;
+}
+
+header .sub_menu .dep2_list>.dep2 {
+  border: 0;
+  padding: 0 40px 28px;
+  min-width: 0;
+}
+
+/* 세로 라인: 아이템 border 대신 컨테이너 라인 레이어 사용 */
+header .sub_menu .dep2_list::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--line), var(--line)),
+    linear-gradient(var(--line), var(--line)),
+    linear-gradient(var(--line), var(--line));
+  background-repeat: no-repeat;
+  background-size: 1px 100%, 1px 100%, 1px 100%;
+  background-position: 25% 0, 50% 0, 75% 0;
+}
+
+/* dep2 타이틀 */
+header .sub_menu .dep2>a {
+  display: inline-block;
+  padding-bottom: 12px;
+  font-weight: 700;
+}
+
+/* dep3 리스트(선택) */
+header .sub_menu .dep3 a {
+  display: inline-block;
+  padding: 0.2rem 0;
+  opacity: .85;
+}
+
+header :is(.dep2>a, .dep3 a):hover {
+  color: var(--loca-purple-00);
+}
+
+header .dep3 a:hover,
+header .dep3 a:focus-visible {
+  text-decoration: none;
+}
+
+header .dep3 a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  border-radius: 999px;
+  transform-origin: center;
+  transform: scaleX(0.08);
+  opacity: 0;
+  transition: transform 0.28s ease, opacity 0.2s ease;
+}
+
+header .dep3 a:hover::after,
+header .dep3 a:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+
+/* quick_menu */
+header .quick_menu {
+  gap: 1rem;
+  align-items: center;
+}
+
+header .login {
+  flex-shrink: 0;
+  text-wrap: nowrap;
+  background: var(--loca-navy-00);
+  color: var(--loca-ivory);
+}
+
+header .ham_menu,
+.all_menu_close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+header .ham_menu {
+  scale: 1.2;
+  font-size: var(--font_size_24);
+}
+
+header .search_menu {
+  display: inline-flex;
+  padding: 0 0.5rem;
+  scale: 1.6;
+  color: var(--gray-08);
+}
+
+/* all_menu */
+body.all_menu_open {
+  overflow: hidden;
+}
+
+.all_menu {
+  position: fixed;
+  inset: 0;
+  background: var(--gray-01);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 90;
+}
+
+.all_menu_inner {
+  width: min(calc(100% - 4.5rem), 1440px);
+  margin: 0 auto;
+}
+
+.all_menu.is_open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+
+.all_menu_head {
+  border-bottom: 1px solid var(--gray-03);
+}
+
+.all_menu_head .all_menu_inner {
+  min-height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.all_menu_logo a,
+footer .footer_logo a {
+  display: inline-flex;
+  align-items: center;
+}
+
+.all_menu_logo img,
+footer .footer_logo img {
+  display: block;
+}
+
+.all_menu_logo img {
+  height: 2rem;
+}
+
+.all_menu_close {
+  border: 0;
+  background: none;
+  font-size: var(--font_size_32);
+  color: var(--loca-black);
+}
+
+.all_menu_body {
+  max-height: calc(100dvh - 4.5rem);
+  overflow-y: auto;
+}
+
+.all_menu_grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(145px, 190px));
+  justify-content: center;
+}
+
+.all_menu_col {
+  padding: 1.2rem 0.9rem 1.8rem;
+}
+
+.all_menu_col:not(:last-child) {
+  border-right: 1px solid var(--gray-03);
+}
+
+.all_menu_tit a {
+  display: block;
+  font-size: var(--font_size_24);
+  font-weight: 600;
+  padding-bottom: 1.25rem;
+}
+
+.all_menu_col:hover .all_menu_tit a {
+  font-weight: 700;
+  color: var(--loca-purple-00);
+}
+
+.all_menu_dep2_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.all_menu_dep2>a {
+  display: block;
+  padding-bottom: 0.4rem;
+  font-size: var(--font_size_16);
+  line-height: 1.45;
+  font-weight: 700;
+}
+
+.all_menu_dep2 .dep3 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+}
+
+.all_menu_dep2 .dep3 a {
+  position: relative;
+  display: inline-block;
+  font-size: var(--font_size_16);
+  line-height: 1.25;
+}
+
+.all_menu_dep2 .dep3 a:hover,
+.all_menu_dep2 .dep3 a:focus-visible {
+  text-decoration: none;
+}
+
+.all_menu_dep2 .dep3 a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.01rem;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  border-radius: 999px;
+  transform-origin: center;
+  transform: scaleX(0.08);
+  opacity: 0;
+  transition: transform 0.28s ease, opacity 0.2s ease;
+}
+
+.all_menu_dep2 .dep3 a:hover::after,
+.all_menu_dep2 .dep3 a:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* footer */
+footer {
+  background: var(--loca-cool-gray);
+  color: var(--loca-ivory);
+}
+
+footer .inner {
+  width: min(calc(100% - 10rem), 1400px);
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+footer .footer_top {
+  border-bottom: 1px solid var(--gray-06);
+  padding-bottom: 1rem;
+}
+
+footer .footer_logo img {
+  height: 1.875rem;
+}
+
+footer .columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+footer .columns h3 {
+  font-size: var(--font_size_14);
+  font-weight: 600;
+  line-height: 1.4;
+  padding-bottom: 0.875rem;
+}
+
+footer .columns ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+footer .columns li a {
+  font-size: var(--font_size_12);
+  color: var(--loca-ivory);
+  line-height: 1.45;
+}
+
+footer :is(.footer_right, .right_b) {
+  display: flex;
+  flex-direction: column;
+}
+
+footer .footer_right {
+  gap: 1.5rem;
+}
+
+footer .app_btns {
+  display: flex;
+  gap: 0.625rem;
+}
+
+footer .btn_app {
+  min-width: 6.75rem;
+  height: 2rem;
+  padding: 0 0.875rem;
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--gray-10);
+  font-size: var(--font_size_12);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer .join_tit {
+  padding-bottom: 0.625rem;
+  line-height: 1;
+}
+
+footer .right_b {
+  align-items: flex-start;
+}
+
+footer .social_icons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.2rem;
+  padding-left: 0.625rem;
+}
+
+footer .social_icons i {
+  scale: 1.7;
+}
+
+footer :is(.footer_cs, .footer_bottom) {
+  border-top: 1px solid var(--gray-06);
+}
+
+footer .footer_cs {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6875rem;
+}
+
+footer .footer_cs p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  line-height: 1.5;
+}
+
+footer .footer_cs a {
+  color: var(--white);
+}
+
+footer .cs_primary {
+  font-size: var(--font_size_16);
+  font-weight: 700;
+}
+
+footer .cs_primary a {
+  font-weight: 800;
+}
+
+footer .cs_secondary {
+  font-size: var(--font_size_12);
+  color: var(--loca-ivory);
+}
+
+footer .cs_secondary a {
+  font-weight: 600;
+}
+
+footer .footer_bottom {
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+footer .footer_util {
+  display: flex;
+  align-items: center;
+  gap: 1.125rem;
+}
+
+footer :is(.footer_info, .copyright, .footer_util a) {
+  font-size: var(--font_size_12);
+  color: var(--gray-03);
+}

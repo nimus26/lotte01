@@ -1,0 +1,369 @@
+﻿@charset "utf-8";
+
+.main_visual {
+  position: relative;
+  background: url(../img/main_visual_bg.png) center center / cover no-repeat;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main_visual .inner {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+  padding-bottom: 176px;
+}
+
+.main_visual .main_visual_dim {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom,
+      color-mix(in srgb, var(--black) 12%, transparent) 0%,
+      color-mix(in srgb, var(--black) 62%, transparent) 100%);
+}
+
+.main_visual .main_tit {
+  position: relative;
+  z-index: 1;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  color: var(--loca-ivory);
+}
+
+.main_visual .main_tit p {
+  margin: 0;
+  font-size: 128px;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.main_visual .main_tit em {
+  font-weight: 700;
+}
+
+.main_visual .btn_to_card {
+  margin-top: 2.75rem;
+}
+
+.main_visual .btn_to_card .more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 14rem;
+  padding: 0.875rem 1.75rem;
+  border: 1px solid var(--loca-ivory);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--loca-ivory);
+  font-size: var(--font_size_16);
+  font-weight: 500;
+}
+
+.main_visual .btn_to_card .more:hover {
+  background: var(--loca-ivory);
+  color: var(--loca-black);
+}
+
+/* best_card */
+.best_card {
+  background: var(--gray-01);
+}
+
+.best_card .inner {
+  padding: 5rem 0 4rem;
+}
+
+.best_card h2 {
+  padding-bottom: 2rem;
+  color: var(--loca-black);
+  font-size: var(--font_size_32);
+  font-weight: 700;
+}
+
+.best_card .contents {
+  position: relative;
+}
+
+.best_card .top {
+  position: relative;
+  z-index: 2;
+}
+
+.best_card .card_main {
+  position: relative;
+  min-height: 34rem;
+}
+
+.best_card .card01 {
+  position: absolute;
+  left: 0;
+  bottom: -4.6rem;
+  z-index: 3;
+}
+
+.best_card .card01 img {
+  display: block;
+  width: clamp(17rem, 25vw, 24rem);
+  height: auto;
+  filter: drop-shadow(0 10px 24px color-mix(in srgb, var(--black) 16%, transparent));
+}
+
+.best_card .txts {
+  width: min(100%, 72rem);
+  min-height: 22rem;
+  padding: 2rem 2.75rem 2rem 25.5rem;
+  border-radius: 1.75rem;
+  background: var(--white);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0.9rem 0.6rem;
+}
+
+.best_card .txts .tag {
+  border: 1px solid var(--loca-navy-02);
+  border-radius: 999px;
+  padding: 0.4rem 1.2rem;
+}
+
+.best_card .txts .tag p {
+  color: var(--loca-black);
+  font-size: var(--font_size_18);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.best_card .txts h3,
+.best_card .txts>p,
+.best_card .txts em,
+.best_card .txts .more {
+  width: 100%;
+}
+
+.best_card .txts h3 {
+  color: var(--loca-black);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.best_card .txts>p {
+  color: var(--gray-08);
+  font-size: clamp(1.7rem, 2.3vw, 2.1rem);
+  line-height: 1.3;
+}
+
+.best_card .txts em {
+  color: var(--loca-black);
+  font-style: normal;
+  font-size: clamp(2.4rem, 3.2vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+.best_card .txts em::after {
+  content: "";
+  display: inline-block;
+  width: 0.22em;
+  height: 0.72em;
+  margin-left: 0.08em;
+  background: color-mix(in srgb, var(--loca-purple-01) 70%, transparent);
+  vertical-align: -0.04em;
+}
+
+.best_card .txts .more {
+  width: max-content;
+  margin-left: auto;
+  margin-top: 0.45rem;
+  padding: 0.85rem 1.95rem;
+  border-radius: 999px;
+  background: var(--loca-navy-00);
+  color: var(--white);
+  font-size: var(--font_size_24);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.best_card .txts .more:hover {
+  background: var(--loca-navy-02);
+}
+
+.best_card .bottom {
+  position: relative;
+  z-index: 4;
+  margin-top: 1.3rem;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 1.5rem;
+}
+
+.best_card .bottom .card_thumb {
+  border: 0;
+  padding: 0;
+  background: none;
+  width: clamp(8.2rem, 10vw, 10.2rem);
+  aspect-ratio: 53.98 / 85.6;
+  cursor: pointer;
+  transform: translateY(0) scale(1);
+  filter: saturate(0.58) brightness(0.78);
+  transition: transform 0.24s ease, filter 0.24s ease;
+}
+
+.best_card .bottom .card_thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0.8rem;
+  box-shadow: 0 8px 16px color-mix(in srgb, var(--black) 18%, transparent);
+}
+
+.best_card .bottom .card_thumb:hover {
+  transform: translateY(-0.7rem) scale(1.02);
+  filter: saturate(0.82) brightness(0.92);
+}
+
+.best_card .bottom .card_thumb.is_active {
+  transform: translateY(-1rem) scale(1.08);
+  filter: saturate(1) brightness(1);
+  z-index: 3;
+}
+
+.best_card .bottom .card2,
+.best_card .bottom .card3,
+.best_card .bottom .card4,
+.best_card .bottom .card5 {
+  margin-left: -1.8rem;
+}
+
+
+/* event */
+.event {
+  background: var(--gray-01);
+}
+
+.event .inner {
+  padding: 4rem 0;
+}
+
+.event h2 {
+  padding-bottom: 2rem;
+  color: var(--loca-black);
+  font-size: var(--font_size_32);
+  font-weight: 700;
+}
+
+.event .contents {
+  display: flex;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.event .contents>li {
+  flex: 0 0 100%;
+  min-height: 29rem;
+  display: flex;
+  background: var(--white);
+}
+
+.event .contents>li>[class$="_img"] {
+  flex: 0 0 50%;
+  min-height: 29rem;
+  background: center center / cover no-repeat;
+  order: 2;
+}
+
+.event .contents>li>[class$="_txts"] {
+  flex: 0 0 50%;
+  height: 467px;
+  padding: 57px 63px;
+  display: flex;
+  flex-direction: column;
+  order: 1;
+  gap: 100px;
+}
+
+.event .contents .txt_t p {
+  color: var(--gray-08);
+  font-size: var(--font_size_24);
+  font-weight: 500;
+  line-height: 1.35;
+
+}
+
+.event .contents .txt_tit {
+  font-family: "Spoqa Han Sans Neo";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.event .contents .txt_tit em {
+  display: block;
+  color: var(--loca-black);
+  font-style: normal;
+  font-size: clamp(2.4rem, 2.8vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.event .contents .txt_date {
+  margin-top: auto;
+}
+
+.event .contents .txt_date p {
+  color: var(--gray-08);
+  font-size: var(--font_size_24);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.event .contents .event_ctrl {
+  margin-top: 0.75rem;
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.event .contents .event_prev,
+.event .contents .event_next {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 0;
+  background: transparent;
+  color: var(--loca-navy-02);
+  font-size: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event .contents .event_prev:hover,
+.event .contents .event_next:hover {
+  color: var(--loca-navy-00);
+}
+
+/* background image path only replace */
+.event .content1 .con1_img {
+  background: url(../img/event01.png) center center / cover no-repeat;
+}
+
+.event .content2 .con2_img {
+  background: url(../img/event02.png) center center / cover no-repeat;
+}
+
+.event .content3 .con3_img {
+  background: url(../img/event03.png) center center / cover no-repeat;
+}
