@@ -1,4 +1,4 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
@@ -184,55 +184,6 @@
     });
 
     updateEventSlide();
-  }
-
-  const lifeSwiperEl = $(".life .swiper");
-  if (lifeSwiperEl && typeof Swiper !== "undefined") {
-    const lifeSlide = new Swiper(lifeSwiperEl, {
-      loop: true,
-      slidesPerView: "auto",
-      spaceBetween: 32,
-      speed: 9000,
-      allowTouchMove: false,
-      autoplay: {
-        delay: 0,
-        disableOnInteraction: false,
-        reverseDirection: false,
-        pauseOnMouseEnter: false,
-      },
-      loopAdditionalSlides: 6,
-      on: {
-        init() {
-          this.wrapperEl.style.transitionTimingFunction = "linear";
-        },
-        slideChangeTransitionStart() {
-          this.wrapperEl.style.transitionTimingFunction = "linear";
-        },
-      },
-    });
-
-    const bindLifeSlideEvents = () => {
-      lifeSlide.slides.forEach((slide) => {
-        if (slide.dataset.lifeBound === "true") return;
-        slide.dataset.lifeBound = "true";
-
-        slide.addEventListener("mouseenter", () => {
-          lifeSlide.autoplay?.stop();
-        });
-
-        slide.addEventListener("mouseleave", () => {
-          lifeSlide.autoplay?.start();
-        });
-
-        slide.addEventListener("click", () => {
-          const href = slide.dataset.href;
-          if (!href) return;
-          window.location.assign(href);
-        });
-      });
-    };
-
-    bindLifeSlideEvents();
   }
 
   const cardThumbs = $$(".best_card .bottom .card_thumb");

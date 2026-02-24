@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="롯데카드 웹사이트">
+  <meta name="keywords" content="롯데, 롯데카드, 카드, 신용카드">
+  <meta name="author" content="nimus">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LotteCard01</title>
+
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <!-- Basic Icons -->
+  <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+  <!-- Filled Icons -->
+  <link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
+  <!-- Brand Icons -->
+  <link href="https://cdn.boxicons.com/3.0.8/fonts/brands/boxicons-brands.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/common_media.css">
+  <link rel="stylesheet" href="css/main_on.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+  <script src="js/common.js" defer></script>
+  <script src="js/common_in.js"></script>
+</head>
+
+<body>
+<div class="wrap">
+  <header id="header">
+      <div class="inner">
+        <h1 class="logo">
+          <a href="#"><img src="img/logo_lottecard.svg" alt="롯데카드"></a>
+        </h1>
+
+        <div class="header_right">
+          <div class="main_top">
+            <ul class="top_menu">
+              <li><a href="#">개인</a></li>
+              <li><a href="#">법인</a></li>
+              <li><a href="#">가맹점</a></li>
+              <li><a href="#">회원가입</a></li>
+              <li><a href="#">English</a></li>
+            </ul>
+          </div><!-- //.main_top -->
+          <div class="main_bottom">
+            <nav class="gnb" id="gnb" aria-label="주요 메뉴">
+              <ul class="menu">
+                <li class="menu_item my" id="my"><a href="#" class="dep1">마이</a>
+                  <div class="sub_menu">
+                    <ul class="dep2_list">
+                      <li class="dep2"><a href="#">내카드</a>
+                        <ul class="dep3">
+                          <li><a href="#">이용내역</a></li>
+                          <li><a href="#">한도관리</a></li>
+                          <li><a href="#">카드관리/등록</a></li>
+                          <li><a href="#">발급상황</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //.내카드 -->
+                      <li class="dep2"><a href="#">내결제</a>
+                        <ul class="dep3">
+                          <li><a href="#">이용대금명세서</a></li>
+                          <li><a href="#">즉시결제</a></li>
+                          <li><a href="#">분할결제</a></li>
+                          <li><a href="#">결제내역</a></li>
+                          <li><a href="#">납부관리</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //.내결제 -->
+                      <li class="dep2"><a href="#">내정보</a>
+                        <ul class="dep3">
+                          <li><a href="#">내정보 조회/변경</a></li>
+                          <li><a href="#">알림서비스</a></li>
+                          <li><a href="#">탈퇴</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //.내정보 -->
+                      <li class="dep2"><a href="#">신청내역 조회</a>
+                        <ul class="dep3">
+                          <li><a href="#">카드발급</a></li>
+                          <li><a href="#">분실/재발급</a></li>
+                          <li><a href="#">신청 서비스</a></li>
+                          <li><a href="#">상담 내역</a></li>
+                          <li><a href="#">참여이벤트</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //.신청내역 -->
+                      <li class="dep2"><a href="#">설정</a>
+                        <ul class="dep3">
+                          <li><a href="#">보안</a></li>
+                          <li><a href="#">알림</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //.설정 -->
+                    </ul><!-- //.dep2_list -->
+                  </div><!-- sub_menu -->
+                </li><!-- //.my -->
+                <li class="menu_item card" id="card"><a href="#" class="dep1">카드</a>
+                  <div class="sub_menu">
+                    <ul class="dep2_list">
+                      <li class="dep2"><a href="#">카드 모아보기</a>
+                        <ul class="dep3">
+                          <li><a href="#">신용카드</a></li>
+                          <li><a href="#">체크카드</a></li>
+                          <li><a href="#">기타카드</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //카드 모아보기 -->
+                    </ul><!-- //.dep2_list -->
+                  </div><!-- //sub_menu -->
+                </li><!-- //.card -->
+                <li class="menu_item benefit" id="benefit"><a href="#" class="dep1">혜택</a>
+                  <div class="sub_menu">
+                    <ul class="dep2_list">
+                      <li class="dep2"><a href="#">내카드 혜택</a>
+                        <ul class="dep3">
+                          <li><a href="#">받은 혜택</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //.내카드 -->
+                      <li class="dep2"><a href="#">포인트</a>
+                        <ul class="dep3">
+                          <li><a href="#">조회</a></li>
+                          <li><a href="#">전환</a></li>
+                          <li><a href="#">사용</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //.포인트 -->
+                      <li class="dep2"><a href="#">이벤트</a>
+                        <ul class="dep3">
+                          <li><a href="#">진행 이벤트</a></li>
+                          <li><a href="#">지난 이벤트</a></li>
+                          <li><a href="#">당첨 확인</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //.이벤트 -->
+                      <li class="dep2"><a href="#">정부지원</a>
+                        <ul class="dep3">
+                          <li><a href="#">바우처</a></li>
+                          <li><a href="#">민생회복소비쿠폰</a></li>
+                          <li><a href="#">경차유류세환급</a></li>
+                          <li><a href="#">소상공인 크레딧</a></li>
+                          <li><a href="#">상생페이백</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //.정부지원 -->
+                    </ul><!-- //.dep2_list -->
+                  </div><!-- //.sub_menu -->
+                </li><!-- //.benefit -->
+                <li class="menu_item cash" id="cash"><a href="#" class="dep1">금융</a>
+                  <div class="sub_menu">
+                    <ul class="dep2_list">
+                      <li class="dep2"><a href="#">대출</a>
+                        <ul class="dep3">
+                          <li><a href="#">전세대출</a></li>
+                          <li><a href="#">단기카드대출</a></li>
+                          <li><a href="#">장기카드대출</a></li>
+                          <li><a href="#">신용대출 조회</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //.대출 -->
+                      <li class="dep2"><a href="#">마이너스카드</a></li>
+                      <li class="dep2"><a href="#">일부금액이월(리볼빙)</a></li>
+                      <li class="dep2"><a href="#">할부금융</a></li>
+                      <li class="dep2"><a href="#">자동차 금융</a></li>
+                      <li class="dep2"><a href="#">스탁론 </a></li>
+                    </ul><!-- //.dep2_list -->
+                  </div>
+
+                </li><!-- //.cash -->
+                <li class="menu_item life" id="life"><a href="#" class="dep1">라이프</a>
+                  <div class="sub_menu">
+                    <ul class="dep2_list">
+                      <li class="dep2"><a href="#">생활문화</a>
+                        <ul class="dep3">
+                          <li><a href="#">쇼핑</a></li>
+                          <li><a href="#">여행</a></li>
+                          <li><a href="#">케어 서비스</a></li>
+                          <li><a href="#">모빌리티팩</a></li>
+                          <li><a href="#">올마이카</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //.생활문화 -->
+                      <li class="dep2"><a href="#">해외 서비스</a>
+                        <ul class="dep3">
+                          <li><a href="#">안심설정</a></li>
+                          <li><a href="#">해외결제</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //해외 서비스 -->
+                      <li class="dep2"><a href="#">편의 서비스</a>
+                        <ul class="dep3">
+                          <li><a href="#">자동납부</a></li>
+                          <li><a href="#">서류발급</a></li>
+                          <li><a href="#">채무면제/유예상품</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //.편의 -->
+                    </ul><!-- //.dep2_list -->
+                  </div>
+                </li><!-- //.life -->
+                <li class="menu_item service" id="service"><a href="#" class="dep1">고객센터</a>
+                  <div class="sub_menu">
+                    <ul class="dep2_list">
+                      <li class="dep2"><a href="#">상담문의</a>
+                        <ul class="dep3">
+                          <li><a href="#">일대일 문의</a></li>
+                          <li><a href="#">이메일 문의</a></li>
+                          <li><a href="#">고객센터 연결</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //상담문의 -->
+                      <li class="dep2"><a href="#">이용안내</a>
+                        <ul class="dep3">
+                          <li><a href="#">사이트 이용안내</a></li>
+                          <li><a href="#">보안프로그램 설치</a></li>
+                          <li><a href="#">서류발급</a></li>
+                        </ul><!-- //.dep3 -->
+                      </li><!-- //이용가이드 -->
+                      <li class="dep2"><a href="#">자주 묻는 질문</a></li>
+                      <li class="dep2"><a href="#">분실신고/재발급</a></li>
+                      <li class="dep2"><a href="#">금융소비자보호포털</a></li>
+                      <li class="dep2"><a href="#">결제승인 이의제기</a></li>
+                      <li class="dep2"><a href="#">결제서비스</a></li>
+                      <li class="dep2"><a href="#">공지사항</a></li>
+                    </ul><!-- //.dep2_list -->
+                  </div>
+                </li><!-- //.service -->
+              </ul><!-- //.menu -->
+            </nav>
+
+            <div class="quick_menu">
+              <a href="#" class="ham_menu" aria-label="전체 메뉴 열기"><i class="bx bx-menu"></i></a>
+              <a href="#" class="search_menu"><i class="bx bx-search"></i></a>
+              <a href="#" class="login more">로그인</a>
+            </div>
+          </div><!-- //.bottom -->
+        </div><!-- //.header_right -->
+      </div><!-- //.inner -->
+
+      <div class="all_menu" aria-hidden="true">
+        <div class="all_menu_head">
+          <div class="all_menu_inner">
+            <h2 class="all_menu_logo">
+              <a href="#"><img src="img/logo_lottecard.svg" alt="롯데카드"></a>
+            </h2>
+            <button type="button" class="all_menu_close" aria-label="전체 메뉴 닫기"><i class="bx bx-x"></i></button>
+          </div><!-- //.all_menu_inner -->
+        </div><!-- //.all_menu_head -->
+        <div class="all_menu_body">
+          <div class="all_menu_inner">
+            <div class="all_menu_grid"></div>
+          </div>
+        </div>
+      </div><!-- //.all_menu -->
+    </header>
+</div>
+</body>
+
+</html>

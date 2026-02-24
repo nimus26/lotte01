@@ -116,8 +116,8 @@ h2 {
   height: auto;
   filter: drop-shadow(0 10px 24px color-mix(in srgb, var(--black) 16%, transparent));
   transition:
-    opacity 0.18s ease,
-    transform 0.18s ease;
+    opacity 0.24s ease,
+    transform 0.34s ease;
   will-change: opacity, transform;
 }
 
@@ -127,6 +127,22 @@ h2 {
   padding: 2.75rem 4rem 2.75rem 4rem;
   border-radius: 1.75rem;
   background: var(--white);
+  clip-path: inset(0 0 0 0);
+  -webkit-clip-path: inset(0 0 0 0);
+  transform-origin: left center;
+  transition:
+    clip-path 0.44s cubic-bezier(0.22, 1, 0.36, 1),
+    -webkit-clip-path 0.44s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s ease,
+    opacity 0.2s ease;
+  will-change: clip-path, opacity, transform;
+}
+
+.best_card .txts.is_switching {
+  clip-path: inset(0 100% 0 0);
+  -webkit-clip-path: inset(0 100% 0 0);
+  transform: translateX(-0.4rem);
+  opacity: 0.96;
 }
 
 .best_card .txts .txts_inner {
@@ -137,19 +153,19 @@ h2 {
   align-content: flex-start;
   gap: 0.9rem 0.6rem;
   transition:
-    opacity 0.18s ease,
-    transform 0.18s ease;
+    opacity 0.2s ease,
+    transform 0.22s ease;
   will-change: opacity, transform;
 }
 
 .best_card .card01 img.is_switching {
   opacity: 0;
-  transform: translateY(0.45rem) scale(0.985);
+  transform: translateY(-1rem) scale(0.985);
 }
 
 .best_card .txts .txts_inner.is_switching {
   opacity: 0;
-  transform: translateY(0.45rem);
+  transform: translateX(-0.35rem);
 }
 
 .best_card .txts .tag {
@@ -229,6 +245,7 @@ h2 {
   display: flex;
   justify-content: flex-end;
   padding-right: 1.5rem;
+  overflow: visible;
 }
 
 .best_card .bottom .card_thumb {

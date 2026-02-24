@@ -20,13 +20,13 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/main_out.css">
   <link rel="stylesheet" href="css/common_media.css">
-  <link rel="stylesheet" href="css/main_off.css">
-  <link rel="stylesheet" href="css/main_on.css">
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
   <script src="js/common.js" defer></script>
+  <script src="js/main_out.js" defer></script>
 </head>
 
 <body>
@@ -397,76 +397,146 @@
         <section class="life">
           <div class="inner">
             <h2>라이프</h2>
-            <div class="container swiper">
-              <ul class="lifes swiper-wrapper">
-                <li class="life1 shop swiper-slide" data-href="#">
-                  <div class="txts">
-                    <div class="txts_t">
-                      <h3>띵샵</h3>
-                    </div>
-                    <div class="txts_b">
-                      <p>롯데카드만의 특별한 쇼핑</p>
-                      <p>첫구매 5,000원 할인까지!</p>
-                    </div>
-                  </div><!-- //.txts -->
-                </li><!-- //.life1 -->
-                <li class="life2 phone swiper-slide" data-href="#">
-                  <div class="txts">
-                    <div class="txts_t">
-                      <h3>휴대폰케어</h3>
-                    </div>
-                    <div class="txts_b">
-                      <p>분실대비 위치확인도</p>
-                      <p>수리비 지원도 함께</p>
-                    </div>
-                  </div><!-- //.txts -->
-                </li><!-- //.life2 -->
-                <li class="life3 car swiper-slide" data-href="#">
-                  <div class="txts">
-                    <div class="txts_t">
-                      <h3>올마이카</h3>
-                    </div>
-                    <div class="txts_b">
-                      <p>주차비 지원 OK</p>
-                      <p>주유/경정비 할인 OK</p>
-                    </div>
-                  </div><!-- //.txts -->
-                </li><!-- //.life3 -->
-                <li class="life4 shopping swiper-slide" data-href="#">
-                  <div class="txts">
-                    <div class="txts_t">
-                      <h3>안심쇼핑</h3>
-                    </div>
-                    <div class="txts_b">
-                      <p>쇼핑지원 할인쿠폰부터</p>
-                      <p>구매물품 손실보상까지</p>
-                    </div>
-                  </div><!-- //.txts -->
-                </li><!-- //.life4 -->
-                <li class="life5 travel swiper-slide" data-href="#">
-                  <div class="txts">
-                    <div class="txts_t">
-                      <h3>롯데트래블</h3>
-                    </div>
-                    <div class="txts_b">
-                      <p>트래블마일 받고</p>
-                      <p>할인 받아 여행 가자</p>
-                    </div>
-                  </div><!-- //.txts -->
-                </li><!-- //.life5 -->
-                <li class="life6 tour swiper-slide" data-href="#">
-                  <div class="txts">
-                    <div class="txts_t">
-                      <h3>해외이용서비스</h3>
-                    </div>
-                    <div class="txts_b">
-                      <p>모바일 해외안심카드로</p>
-                      <p>가상카드번호 발급받아</p>
-                      <p>안심쇼핑</p>
-                    </div>
-                  </div><!-- //.txts -->
-                </li><!-- //.life6 -->
-              </ul><!-- life -->
+            <div class="container">
+              <div class="swiper">
+                <ul class="lifes swiper-wrapper">
+                  <li class="life1 shop swiper-slide">
+                    <div class="txts">
+                      <div class="txts_t">
+                        <h3>띵샵</h3>
+                      </div>
+                      <div class="txts_b">
+                        <p>롯데카드만의 특별한 쇼핑</p>
+                        <p>첫구매 5,000원 할인까지!</p>
+                      </div>
+                    </div><!-- //.txts -->
+                  </li><!-- //.life1 -->
+                  <li class="life2 phone swiper-slide">
+                    <div class="txts">
+                      <div class="txts_t">
+                        <h3>휴대폰케어</h3>
+                      </div>
+                      <div class="txts_b">
+                        <p>분실대비 위치확인도</p>
+                        <p>수리비 지원도 함께</p>
+                      </div>
+                    </div><!-- //.txts -->
+                  </li><!-- //.life2 -->
+                  <li class="life3 car swiper-slide">
+                    <div class="txts">
+                      <div class="txts_t">
+                        <h3>올마이카</h3>
+                      </div>
+                      <div class="txts_b">
+                        <p>주차비 지원 OK</p>
+                        <p>주유/경정비 할인 OK</p>
+                      </div>
+                    </div><!-- //.txts -->
+                  </li><!-- //.life3 -->
+                  <li class="life4 shopping swiper-slide">
+                    <div class="txts">
+                      <div class="txts_t">
+                        <h3>안심쇼핑</h3>
+                      </div>
+                      <div class="txts_b">
+                        <p>쇼핑지원 할인쿠폰부터</p>
+                        <p>구매물품 손실보상까지</p>
+                      </div>
+                    </div><!-- //.txts -->
+                  </li><!-- //.life4 -->
+                  <li class="life5 travel swiper-slide">
+                    <div class="txts">
+                      <div class="txts_t">
+                        <h3>롯데트래블</h3>
+                      </div>
+                      <div class="txts_b">
+                        <p>트래블마일 받고</p>
+                        <p>할인 받아 여행 가자</p>
+                      </div>
+                    </div><!-- //.txts -->
+                  </li><!-- //.life5 -->
+                  <li class="life6 tour swiper-slide">
+                    <div class="txts">
+                      <div class="txts_t">
+                        <h3>해외이용서비스</h3>
+                      </div>
+                      <div class="txts_b">
+                        <p>모바일 해외안심카드로</p>
+                        <p>가상카드번호 발급받아</p>
+                        <p>안심쇼핑</p>
+                      </div>
+                    </div><!-- //.txts -->
+                  </li><!-- //.life6 -->
+                  <li class="life1 shop swiper-slide">
+                    <div class="txts">
+                      <div class="txts_t">
+                        <h3>띵샵</h3>
+                      </div>
+                      <div class="txts_b">
+                        <p>롯데카드만의 특별한 쇼핑</p>
+                        <p>첫구매 5,000원 할인까지!</p>
+                      </div>
+                    </div><!-- //.txts -->
+                  </li><!-- //.life1 -->
+                  <li class="life2 phone swiper-slide">
+                    <div class="txts">
+                      <div class="txts_t">
+                        <h3>휴대폰케어</h3>
+                      </div>
+                      <div class="txts_b">
+                        <p>분실대비 위치확인도</p>
+                        <p>수리비 지원도 함께</p>
+                      </div>
+                    </div><!-- //.txts -->
+                  </li><!-- //.life2 -->
+                  <li class="life3 car swiper-slide">
+                    <div class="txts">
+                      <div class="txts_t">
+                        <h3>올마이카</h3>
+                      </div>
+                      <div class="txts_b">
+                        <p>주차비 지원 OK</p>
+                        <p>주유/경정비 할인 OK</p>
+                      </div>
+                    </div><!-- //.txts -->
+                  </li><!-- //.life3 -->
+                  <li class="life4 shopping swiper-slide">
+                    <div class="txts">
+                      <div class="txts_t">
+                        <h3>안심쇼핑</h3>
+                      </div>
+                      <div class="txts_b">
+                        <p>쇼핑지원 할인쿠폰부터</p>
+                        <p>구매물품 손실보상까지</p>
+                      </div>
+                    </div><!-- //.txts -->
+                  </li><!-- //.life4 -->
+                  <li class="life5 travel swiper-slide">
+                    <div class="txts">
+                      <div class="txts_t">
+                        <h3>롯데트래블</h3>
+                      </div>
+                      <div class="txts_b">
+                        <p>트래블마일 받고</p>
+                        <p>할인 받아 여행 가자</p>
+                      </div>
+                    </div><!-- //.txts -->
+                  </li><!-- //.life5 -->
+                  <li class="life6 tour swiper-slide">
+                    <div class="txts">
+                      <div class="txts_t">
+                        <h3>해외이용서비스</h3>
+                      </div>
+                      <div class="txts_b">
+                        <p>모바일 해외안심카드로</p>
+                        <p>가상카드번호 발급받아</p>
+                        <p>안심쇼핑</p>
+                      </div>
+                    </div><!-- //.txts -->
+                  </li><!-- //.life6 -->
+                </ul><!-- life -->
+              </div>
+
             </div>
           </div><!-- //.inner -->
         </section><!-- //.life -->
@@ -474,30 +544,30 @@
           <div class="inner">
             <h2>공지사항</h2>
             <div class="notices">
-              <a href="#" class="notice1">
+              <div class="notice1">
                 <div class="notice_tit">
                   <p>개인신용정보 유출 사실 및 조치 방법 안내</p>
                 </div>
                 <div class="notice_date">
                   <p>2025.09.18</p>
                 </div>
-              </a><!-- //.notice1 -->
-              <a href="#" class="notice2">
+              </div><!-- //.notice1 -->
+              <div class="notice2">
                 <div class="notice_tit">
                   <p>쿠팡 개인정보 유출사고에 따른 보이스피싱·스미싱 등 피해에 주의하세요</p>
                 </div>
                 <div class="notice_date">
                   <p>2025.12.15</p>
                 </div>
-              </a><!-- //.notice2 -->
-              <a href="#" class="notice3">
+              </div><!-- //.notice2 -->
+              <div class="notice3">
                 <div class="notice_tit">
                   <p>사이버침해 사고 관련 롯데카드 사칭 스미싱 문자 주의 안내</p>
                 </div>
                 <div class="notice_date">
                   <p>2025.09.03</p>
                 </div>
-              </a><!-- //.notice3 -->
+              </div><!-- //.notice3 -->
             </div><!-- //.notices -->
 
           </div><!-- //.inner -->
