@@ -7,6 +7,7 @@
 
   const gnbItems = $$("#gnb .menu > .menu_item");
   const allMenu = $(".all_menu");
+  const allMenuGrid = $(".all_menu_grid");
   const btnHam = $(".ham_menu");
   const btnCloseAll = $(".all_menu_close");
 
@@ -73,6 +74,64 @@
   });
 
   // ---- All menu (hamburger) ----
+  const buildAllMenuGrid = () => {
+    if (!allMenuGrid || !gnbItems.length) return;
+    allMenuGrid.innerHTML = "";
+
+    gnbItems.forEach((item) => {
+      const dep1 = item.querySelector(".dep1");
+      if (!dep1) return;
+
+      const col = document.createElement("section");
+      col.className = "all_menu_col";
+
+      const tit = document.createElement("h3");
+      tit.className = "all_menu_tit";
+
+      const titLink = dep1.cloneNode(true);
+      tit.appendChild(titLink);
+      col.appendChild(tit);
+
+      const dep2List = item.querySelector(".sub_menu .dep2_list");
+      if (dep2List) {
+        const dep2Wrap = document.createElement("ul");
+        dep2Wrap.className = "all_menu_dep2_list";
+
+        [...dep2List.children].forEach((dep2) => {
+          if (!dep2.classList.contains("dep2")) return;
+
+          const dep2Item = document.createElement("li");
+          dep2Item.className = "all_menu_dep2";
+
+          const dep2Anchor = dep2.querySelector("a");
+          if (dep2Anchor) dep2Item.appendChild(dep2Anchor.cloneNode(true));
+
+          const dep3 = dep2.querySelector(".dep3");
+          if (dep3) {
+            const dep3List = document.createElement("ul");
+            dep3List.className = "dep3";
+
+            [...dep3.querySelectorAll(":scope > li > a")].forEach((a) => {
+              const li = document.createElement("li");
+              li.appendChild(a.cloneNode(true));
+              dep3List.appendChild(li);
+            });
+
+            if (dep3List.children.length) dep2Item.appendChild(dep3List);
+          }
+
+          dep2Wrap.appendChild(dep2Item);
+        });
+
+        col.appendChild(dep2Wrap);
+      }
+
+      allMenuGrid.appendChild(col);
+    });
+  };
+
+  buildAllMenuGrid();
+
   const toggleAllMenu = (open) => {
     if (!allMenu) return;
 
