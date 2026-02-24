@@ -1,6 +1,6 @@
 ﻿document.addEventListener("DOMContentLoaded", () => {
-  const $ = (s, p = document) => p.querySelector(s);
-  const $$ = (s, p = document) => [...p.querySelectorAll(s)];
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
   const header = $("#header");
   if (!header) return;
@@ -11,72 +11,46 @@
   const btnHam = $(".ham_menu");
   const btnCloseAll = $(".all_menu_close");
 
-  const hasGSAP = typeof window.gsap !== "undefined";
-
   let isSubOpen = false;
   let lastScrollY = window.scrollY;
 
-  // ---- helpers (sub menu) ----
-  const animateShow = (el) => {
+  const setDisplay = (el, isOpen) => {
     if (!el) return;
-    if (!hasGSAP) return (el.style.display = "block");
-    gsap.killTweensOf(el);
-    gsap.fromTo(el, { autoAlpha: 0, y: -10 }, { autoAlpha: 1, y: 0, display: "block", duration: 0.25, ease: "power2.out" });
+    el.style.removeProperty("opacity");
+    el.style.removeProperty("transform");
+    el.style.display = isOpen ? "block" : "none";
   };
 
-  const animateHide = (el) => {
-    if (!el) return;
-    if (!hasGSAP) return (el.style.display = "none");
-    gsap.killTweensOf(el);
-    gsap.to(el, {
-      autoAlpha: 0,
-      y: -10,
-      duration: 0.18,
-      ease: "power2.in",
-      onComplete: () => (el.style.display = "none"),
-    });
-  };
-
-  const closeAllSubMenus = () => {
+  const closeSubMenus = (except = null) => {
     gnbItems.forEach((item) => {
+      if (item === except) return;
       item.classList.remove("is_active");
-      animateHide(item.querySelector(".sub_menu"));
+      setDisplay(item.querySelector(".sub_menu"), false);
     });
-    isSubOpen = false;
+    isSubOpen = Boolean(except);
   };
 
   const openSubMenu = (item) => {
-    // 다른 메뉴 닫기
-    gnbItems.forEach((el) => {
-      if (el === item) return;
-      el.classList.remove("is_active");
-      animateHide(el.querySelector(".sub_menu"));
-    });
-
-    // 내 메뉴 열기
+    closeSubMenus(item);
     item.classList.add("is_active");
-    animateShow(item.querySelector(".sub_menu"));
-
+    setDisplay(item.querySelector(".sub_menu"), true);
     isSubOpen = true;
-    header.classList.add("is_header_blur");
+    syncHeaderBlur();
   };
 
-  // ---- GNB hover (item별 mouseenter만) ----
   gnbItems.forEach((item) => {
     if (!item.querySelector(".sub_menu")) return;
     item.addEventListener("mouseenter", () => openSubMenu(item));
   });
 
-  // header mouseleave는 1번만
   header.addEventListener("mouseleave", () => {
-    closeAllSubMenus();
+    closeSubMenus();
     syncHeaderBlur();
   });
 
-  // ---- All menu (hamburger) ----
   const buildAllMenuGrid = () => {
-    if (!allMenuGrid || !gnbItems.length) return;
-    allMenuGrid.innerHTML = "";
+    if (!allMenuGrid) return;
+    allMenuGrid.textContent = "";
 
     gnbItems.forEach((item) => {
       const dep1 = item.querySelector(".dep1");
@@ -87,50 +61,46 @@
 
       const tit = document.createElement("h3");
       tit.className = "all_menu_tit";
-
-      const titLink = dep1.cloneNode(true);
-      tit.appendChild(titLink);
-      col.appendChild(tit);
+      tit.append(dep1.cloneNode(true));
+      col.append(tit);
 
       const dep2List = item.querySelector(".sub_menu .dep2_list");
       if (dep2List) {
         const dep2Wrap = document.createElement("ul");
         dep2Wrap.className = "all_menu_dep2_list";
 
-        [...dep2List.children].forEach((dep2) => {
+        Array.from(dep2List.children).forEach((dep2) => {
           if (!dep2.classList.contains("dep2")) return;
 
           const dep2Item = document.createElement("li");
           dep2Item.className = "all_menu_dep2";
 
-          const dep2Anchor = dep2.querySelector("a");
-          if (dep2Anchor) dep2Item.appendChild(dep2Anchor.cloneNode(true));
+          const dep2Anchor = dep2.querySelector(":scope > a") || dep2.querySelector("a");
+          if (dep2Anchor) dep2Item.append(dep2Anchor.cloneNode(true));
 
-          const dep3 = dep2.querySelector(".dep3");
-          if (dep3) {
+          const dep3Links = Array.from(dep2.querySelectorAll(":scope > .dep3 > li > a"));
+          if (dep3Links.length) {
             const dep3List = document.createElement("ul");
             dep3List.className = "dep3";
 
-            [...dep3.querySelectorAll(":scope > li > a")].forEach((a) => {
+            dep3Links.forEach((link) => {
               const li = document.createElement("li");
-              li.appendChild(a.cloneNode(true));
-              dep3List.appendChild(li);
+              li.append(link.cloneNode(true));
+              dep3List.append(li);
             });
 
-            if (dep3List.children.length) dep2Item.appendChild(dep3List);
+            dep2Item.append(dep3List);
           }
 
-          dep2Wrap.appendChild(dep2Item);
+          dep2Wrap.append(dep2Item);
         });
 
-        col.appendChild(dep2Wrap);
+        col.append(dep2Wrap);
       }
 
-      allMenuGrid.appendChild(col);
+      allMenuGrid.append(col);
     });
   };
-
-  buildAllMenuGrid();
 
   const toggleAllMenu = (open) => {
     if (!allMenu) return;
@@ -138,8 +108,13 @@
     allMenu.classList.toggle("is_open", open);
     allMenu.setAttribute("aria-hidden", open ? "false" : "true");
     document.body.classList.toggle("all_menu_open", open);
+    header.classList.toggle("is_all_menu_active", open);
 
-    // 전체메뉴 열리면 헤더 블러는 유지하는 게 보통 UX 안정적
+    if (open) {
+      closeSubMenus();
+      header.classList.remove("is_header_blur", "is_header_hidden");
+    }
+
     syncHeaderBlur();
   };
 
@@ -151,22 +126,22 @@
   btnCloseAll?.addEventListener("click", () => toggleAllMenu(false));
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      toggleAllMenu(false);
-      closeAllSubMenus();
-      syncHeaderBlur();
-    }
+    if (e.key !== "Escape") return;
+    toggleAllMenu(false);
+    closeSubMenus();
+    syncHeaderBlur();
   });
 
-  // ---- Header blur / hide on scroll ----
   function syncHeaderBlur() {
     const top = window.scrollY <= 10;
     const allOpen = allMenu?.classList.contains("is_open");
-    const shouldBlur = !top || allOpen || isSubOpen;
 
-    header.classList.toggle("is_header_blur", shouldBlur);
+    if (allOpen) {
+      header.classList.remove("is_header_blur", "is_header_hidden");
+      return;
+    }
 
-    // 맨 위면 숨김은 해제
+    header.classList.toggle("is_header_blur", !top && !isSubOpen);
     if (top) header.classList.remove("is_header_hidden");
   }
 
@@ -174,37 +149,108 @@
     const y = window.scrollY;
     const top = y <= 10;
 
-    // 블러는 상태 기준으로
     syncHeaderBlur();
-
-    // 아래로 스크롤하면 숨김, 위로 스크롤하면 보임 (단, top이면 항상 보임)
-    if (!top) {
-      header.classList.toggle("is_header_hidden", y > lastScrollY);
-    }
+    if (!top) header.classList.toggle("is_header_hidden", y > lastScrollY);
 
     lastScrollY = y;
   });
 
+  buildAllMenuGrid();
+  syncHeaderBlur();
+
+  const eventTrack = $(".event .contents");
+  const eventItems = $$(".event .contents > li");
+  if (eventTrack && eventItems.length > 1) {
+    let eventIndex = 0;
+    const totalEvents = eventItems.length;
+
+    const updateEventSlide = () => {
+      eventItems.forEach((item, idx) => {
+        item.style.transform = `translateX(-${eventIndex * 100}%)`;
+        item.setAttribute("aria-hidden", idx === eventIndex ? "false" : "true");
+      });
+    };
+
+    const moveEventSlide = (step) => {
+      eventIndex = (eventIndex + step + totalEvents) % totalEvents;
+      updateEventSlide();
+    };
+
+    $$(".event .event_prev").forEach((btn) => {
+      btn.addEventListener("click", () => moveEventSlide(-1));
+    });
+    $$(".event .event_next").forEach((btn) => {
+      btn.addEventListener("click", () => moveEventSlide(1));
+    });
+
+    updateEventSlide();
+  }
+
+  const lifeSwiperEl = $(".life .swiper");
+  if (lifeSwiperEl && typeof Swiper !== "undefined") {
+    const lifeSlide = new Swiper(lifeSwiperEl, {
+      loop: true,
+      slidesPerView: "auto",
+      spaceBetween: 32,
+      speed: 9000,
+      allowTouchMove: false,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+        reverseDirection: false,
+        pauseOnMouseEnter: false,
+      },
+      loopAdditionalSlides: 6,
+      on: {
+        init() {
+          this.wrapperEl.style.transitionTimingFunction = "linear";
+        },
+        slideChangeTransitionStart() {
+          this.wrapperEl.style.transitionTimingFunction = "linear";
+        },
+      },
+    });
+
+    const bindLifeSlideEvents = () => {
+      lifeSlide.slides.forEach((slide) => {
+        if (slide.dataset.lifeBound === "true") return;
+        slide.dataset.lifeBound = "true";
+
+        slide.addEventListener("mouseenter", () => {
+          lifeSlide.autoplay?.stop();
+        });
+
+        slide.addEventListener("mouseleave", () => {
+          lifeSlide.autoplay?.start();
+        });
+
+        slide.addEventListener("click", () => {
+          const href = slide.dataset.href;
+          if (!href) return;
+          window.location.assign(href);
+        });
+      });
+    };
+
+    bindLifeSlideEvents();
+  }
+
   const cardThumbs = $$(".best_card .bottom .card_thumb");
+  if (!cardThumbs.length) return;
+
   const mainCardImg = $(".best_card .card01 img");
+  const mainTextWrap = $(".best_card .txts .txts_inner");
   const mainTags = $$(".best_card .txts .tag p");
   const mainTitle = $(".best_card .txts h3");
   const mainDesc = $(".best_card .txts .card_desc");
   const mainBenefit = $(".best_card .txts .card_benefit");
   const mainMore = $(".best_card .txts .more");
-  const setMainCardFromThumb = (thumb) => {
-    if (!mainCardImg || !thumb) return;
-    const {
-      src,
-      alt,
-      tag1,
-      tag2,
-      title,
-      desc,
-      benefit,
-      link,
-    } = thumb.dataset;
+  let switchTimer = null;
 
+  const applyMainCardData = (thumb) => {
+    if (!mainCardImg || !thumb) return;
+
+    const { src, alt, tag1, tag2, title, desc, benefit, link } = thumb.dataset;
     if (src) mainCardImg.src = src;
     if (alt) mainCardImg.alt = alt;
     if (mainTags[0] && tag1) mainTags[0].textContent = tag1;
@@ -215,20 +261,44 @@
     if (mainMore && link) mainMore.setAttribute("href", link);
   };
 
-  if (cardThumbs.length) {
+  const setActiveThumb = (target) => {
     cardThumbs.forEach((thumb) => {
-      thumb.addEventListener("click", () => {
-        cardThumbs.forEach((el) => {
-          const isActive = el === thumb;
-          el.classList.toggle("is_active", isActive);
-          el.setAttribute("aria-pressed", isActive ? "true" : "false");
-        });
-        setMainCardFromThumb(thumb);
-      });
+      const isActive = thumb === target;
+      thumb.classList.toggle("is_active", isActive);
+      thumb.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
+  };
 
-    const initialActive = $(".best_card .bottom .card_thumb.is_active") || cardThumbs[0];
-    if (initialActive) setMainCardFromThumb(initialActive);
-  }
+  const switchMainCard = (thumb, animate = false) => {
+    if (!thumb) return;
+
+    const targets = [mainCardImg, mainTextWrap].filter(Boolean);
+    if (!animate || !targets.length) {
+      applyMainCardData(thumb);
+      return;
+    }
+
+    if (switchTimer) clearTimeout(switchTimer);
+    targets.forEach((el) => el.classList.add("is_switching"));
+
+    switchTimer = window.setTimeout(() => {
+      applyMainCardData(thumb);
+      requestAnimationFrame(() => {
+        targets.forEach((el) => el.classList.remove("is_switching"));
+      });
+      switchTimer = null;
+    }, 150);
+  };
+
+  cardThumbs.forEach((thumb) => {
+    thumb.addEventListener("click", () => {
+      if (thumb.classList.contains("is_active")) return;
+      setActiveThumb(thumb);
+      switchMainCard(thumb, true);
+    });
+  });
+
+  const initialActive = $(".best_card .bottom .card_thumb.is_active") || cardThumbs[0];
+  setActiveThumb(initialActive);
+  switchMainCard(initialActive, false);
 });
-

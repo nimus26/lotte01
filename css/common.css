@@ -10,6 +10,7 @@
   --font_size_18: 1.125rem;
   --font_size_24: 1.5rem;
   --font_size_32: 2rem;
+  --font_size_40: 2.5rem;
 
   /* Basic */
   --black: #000000;
@@ -97,9 +98,12 @@ header.is_header_blur {
   box-shadow: 0 0.5rem 1rem color-mix(in srgb, var(--gray-09) 12%, transparent);
 }
 
+
 header.is_all_menu_active {
-  background: var(--loca-ivory);
+  background: var(--white);
   box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 header .inner {
@@ -170,12 +174,16 @@ header .sub_menu_inner {
 }
 
 /* (옵션) 스크롤 내려서 헤더가 투명해졌을 때(Blur) 서브메뉴도 맞춰주기 */
-header.is_header_blur .sub_menu {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+header.is_header_blur {
   border-top-color: color-mix(in srgb, var(--loca-navy-03) 55%, transparent);
 }
+
+header.is_header_blur .sub_menu {
+  background: rgba(255, 255, 255, 0.72) transparent;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
 
 header .sub_menu .dep2_list {
   width: min(85%, 1280px);
@@ -219,48 +227,42 @@ header .sub_menu .dep2_list::before {
 
 /* dep2 타이틀 */
 header .sub_menu .dep2>a {
+  font-size: 20px;
   display: inline-block;
   padding-bottom: 12px;
   font-weight: 700;
 }
 
 /* dep3 리스트(선택) */
+header .sub_menu .dep3 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
 header .sub_menu .dep3 a {
+  font-size: var(--font_size_18);
   display: inline-block;
   padding: 0.2rem 0;
+  line-height: 1.25;
   opacity: 0.85;
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  text-decoration-skip-ink: auto;
+  transition:
+    color 0.2s ease,
+    text-decoration-color 0.2s ease;
 }
 
 header :is(.dep2 > a, .dep3 a):hover {
   color: var(--loca-purple-00);
 }
 
-header .dep3 a:hover,
-header .dep3 a:focus-visible {
-  text-decoration: none;
-}
-
-header .dep3 a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  background: currentColor;
-  border-radius: 999px;
-  transform-origin: center;
-  transform: scaleX(0.08);
-  opacity: 0;
-  transition:
-    transform 0.28s ease,
-    opacity 0.2s ease;
-}
-
-header .dep3 a:hover::after,
-header .dep3 a:focus-visible::after {
-  transform: scaleX(1);
-  opacity: 1;
+header .sub_menu .dep3 a:hover,
+header .sub_menu .dep3 a:focus-visible {
+  text-decoration-color: currentColor;
 }
 
 /* quick_menu */
@@ -304,7 +306,7 @@ body.all_menu_open {
 .all_menu {
   position: fixed;
   inset: 0;
-  background: var(--gray-01);
+  background: var(--white);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -323,6 +325,10 @@ body.all_menu_open {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+}
+
+.all_menu :is(.all_menu_head, .all_menu_body) {
+  background: var(--white);
 }
 
 .all_menu_head {

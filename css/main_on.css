@@ -1,0 +1,8 @@
+@charset "utf-8";
+
+h2 {
+  color: var(--loca-black);
+  font-weight: 600;
+  padding-bottom: 2rem;
+  font-size: var(--font_size_32);
+}
