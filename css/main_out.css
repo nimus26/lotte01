@@ -28,9 +28,7 @@ h2 {
   inset: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom,
-      color-mix(in srgb, var(--black) 12%, transparent) 0%,
-      color-mix(in srgb, var(--black) 62%, transparent) 100%);
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--black) 12%, transparent) 0%, color-mix(in srgb, var(--black) 62%, transparent) 100%);
 }
 
 .main_visual .main_tit {
@@ -211,7 +209,7 @@ h2 {
 }
 
 .best_card .txts em::after {
-  content: "";
+  content: '';
   display: inline-block;
   width: 0.22em;
   height: 0.72em;
@@ -301,7 +299,7 @@ h2 {
   background: var(--white);
 }
 
-.event .contents>li {
+.event .contents > li {
   flex: 0 0 100%;
   display: flex;
   align-items: stretch;
@@ -309,7 +307,7 @@ h2 {
   will-change: transform;
 }
 
-.event .contents>li>img[class$="_img"] {
+.event .contents > li > img[class$='_img'] {
   flex: 0 0 50%;
   width: 50%;
   height: auto;
@@ -319,7 +317,7 @@ h2 {
   object-position: center center;
 }
 
-.event .contents>li>[class$="_txts"] {
+.event .contents > li > [class$='_txts'] {
   position: relative;
   display: flex;
   flex: 0 0 50%;
@@ -394,16 +392,8 @@ h2 {
 
 .life .container {
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right,
-      transparent 0,
-      #000 5%,
-      #000 95%,
-      transparent 100%);
-  mask-image: linear-gradient(to right,
-      transparent 0,
-      #000 5%,
-      #000 95%,
-      transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 5%, #000 95%, transparent 100%);
 }
 
 .life ul.lifes {
@@ -413,7 +403,7 @@ h2 {
   gap: 0;
 }
 
-.life ul.lifes>li {
+.life ul.lifes > li {
   position: relative;
   width: 300px;
   flex: 0 0 clamp(16.5rem, 16.2vw, 18.8rem);
@@ -427,8 +417,8 @@ h2 {
   cursor: pointer;
 }
 
-.life ul.lifes>li::before {
-  content: "";
+.life ul.lifes > li::before {
+  content: '';
   position: absolute;
   inset: 0;
   background-position: center top;
@@ -437,42 +427,44 @@ h2 {
   transform: scale(1.015);
 }
 
-.life ul.lifes>li::after {
-  content: "";
+.life ul.lifes > li::after {
+  content: '';
   position: absolute;
   inset: 38% 0 0;
-  background: linear-gradient(to bottom,
-      color-mix(in srgb, var(--white) 0%, transparent) 0%,
-      color-mix(in srgb, var(--white) 68%, transparent) 42%,
-      var(--white) 70%,
-      var(--white) 100%);
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--white) 0%, transparent) 0%,
+    color-mix(in srgb, var(--white) 68%, transparent) 42%,
+    var(--white) 70%,
+    var(--white) 100%
+  );
 }
 
-.life ul.lifes>li.life1::before {
+.life ul.lifes > li.life1::before {
   background: url(../img/life_shop.png) no-repeat top center;
 }
 
-.life ul.lifes>li.life2::before {
+.life ul.lifes > li.life2::before {
   background: url(../img/life_phone.png) no-repeat top center;
 }
 
-.life ul.lifes>li.life3::before {
+.life ul.lifes > li.life3::before {
   background: url(../img/life_car.png) no-repeat top center;
 }
 
-.life ul.lifes>li.life4::before {
+.life ul.lifes > li.life4::before {
   background: url(../img/life_shopping.png) no-repeat top center;
 }
 
-.life ul.lifes>li.life5::before {
+.life ul.lifes > li.life5::before {
   background: url(../img/life_travel.png) no-repeat top center;
 }
 
-.life ul.lifes>li.life6::before {
+.life ul.lifes > li.life6::before {
   background: url(../img/life_tour.png) no-repeat top center;
 }
 
-.life ul.lifes>li .txts {
+.life ul.lifes > li .txts {
   position: relative;
   z-index: 10;
   width: 100%;
@@ -484,17 +476,17 @@ h2 {
   text-align: center;
 }
 
-.life ul.lifes>li .txts_t h3 {
+.life ul.lifes > li .txts_t h3 {
   color: var(--loca-black);
   font-size: 24px;
   font-weight: 700;
 }
 
-.life ul.lifes>li .txts_b {
+.life ul.lifes > li .txts_b {
   margin-top: 1rem;
 }
 
-.life ul.lifes>li .txts_b p {
+.life ul.lifes > li .txts_b p {
   color: var(--loca-black);
   font-size: 20px;
   font-weight: 400;
@@ -505,10 +497,9 @@ h2 {
 /* notice */
 .notice .inner {
   padding: 4.5rem 0 5.5rem;
-
 }
 
-.notice .inner .notices> :is(.notice1, .notice2, .notice3) {
+.notice .inner .notices > :is(.notice1, .notice2, .notice3) {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -516,9 +507,17 @@ h2 {
   gap: 2rem;
   text-align: left;
   padding: 0 30px 30px 30px;
+  text-decoration: none;
+  color: inherit;
 }
-
-.notice .inner .notices>.notice1 {
+.notice .inner .notices > :is(.notice1, .notice2, .notice3):hover p {
+  color: var(--loca-purple-00);
+  font-weight: 500;
+}
+.notice .inner .notices > :is(.notice1, .notice2, .notice3):focus-visible {
+  outline: 2px solid var(--loca-purple-00);
+}
+.notice .inner .notices > .notice1 {
   border-top: 1px solid color-mix(in srgb, var(--loca-black) 28%, transparent);
   padding-top: 2rem;
 }

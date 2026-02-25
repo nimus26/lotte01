@@ -134,30 +134,39 @@ document.addEventListener("DOMContentLoaded", () => {
   setActiveThumb(initialActive);
   switchMainCard(initialActive, false);
   
-const blogSlide = new Swiper(".blog .swiper", {
-  loop: true,
-  slidesPerView: 'auto', //아이템 너비만큼 자연 흐름
-  spaceBetween: 30,
-  speed: 10000, //전체 트랙이 한번 도는 시간 (느리게=크게)
-  autoplay: {
-    delay: 0,
-    disableOnInteraction: false,
-    // pauseOnMouseEnter: false, //마우스 올려도 안 멈추게
-  },
-  loopAdditionalSlides: 6, //루프 시 빈틈 방지
-  on: {
-    init: function () {
-      this.wrapperEl.style.transitionTimingFunction = 'linear';
-    },
-    slideChangeTransitionStart: function () {
-      this.wrapperEl.style.transitionTimingFunction = 'linear';
-    },
+  const lifeSwiperEl = $(".life .swiper");
+  if (lifeSwiperEl && typeof Swiper !== "undefined") {
+    const slideCount = $$(".life .swiper .swiper-slide").length;
+
+    new Swiper(lifeSwiperEl, {
+      loop: true,
+      slidesPerView: "auto",
+      spaceBetween: 30,
+      speed: 10000,
+      watchOverflow: false,
+      loopAdditionalSlides: slideCount,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      on: {
+        init() {
+          this.wrapperEl.style.transitionTimingFunction = "linear";
+        },
+        slideChangeTransitionStart() {
+          this.wrapperEl.style.transitionTimingFunction = "linear";
+        },
+      },
+    });
+  }
+
+  const selectBtn = document.querySelector(".select_box button");
+  if (selectBtn) {
+    selectBtn.addEventListener("click", () => {
+      document.querySelector(".select_box")?.classList.toggle("on");
+    });
   }
 });
 
-document.querySelector('.select_box button')
-.addEventListener('click',()=>{
-  document.querySelector('.select_box').classList.toggle('on');
-})
- 
-});
+
