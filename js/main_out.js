@@ -79,6 +79,32 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainMore = $(".best_card .txts .more");
   let switchTimer = null;
 
+  const renderBenefitHighlight = (benefitText = "") => {
+    if (!mainBenefit) return;
+
+    const marker = "최대";
+    const text = benefitText.trim();
+    mainBenefit.textContent = "";
+    if (!text) return;
+
+    const markerIndex = text.indexOf(marker);
+    if (markerIndex < 0) {
+      mainBenefit.textContent = text;
+      return;
+    }
+
+    const beforeText = text.slice(0, markerIndex);
+    const highlightedText = text.slice(markerIndex);
+    if (beforeText) {
+      mainBenefit.append(document.createTextNode(beforeText));
+    }
+
+    const mark = document.createElement("span");
+    mark.className = "benefit_mark";
+    mark.textContent = highlightedText;
+    mainBenefit.append(mark);
+  };
+
   const applyMainCardData = (thumb) => {
     if (!mainCardImg || !thumb) return;
 
@@ -89,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mainTags[1] && tag2) mainTags[1].textContent = tag2;
     if (mainTitle && title) mainTitle.textContent = title;
     if (mainDesc && desc) mainDesc.textContent = desc;
-    if (mainBenefit && benefit) mainBenefit.textContent = benefit;
+    renderBenefitHighlight(benefit || "");
     if (mainMore && link) mainMore.setAttribute("href", link);
   };
 

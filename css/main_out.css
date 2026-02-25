@@ -208,14 +208,25 @@ h2 {
   line-height: 1.08;
 }
 
-.best_card .txts em::after {
-  content: '';
+.best_card .txts .card_benefit .benefit_mark {
+  position: relative;
   display: inline-block;
-  width: 0.22em;
-  height: 0.72em;
-  margin-left: 0.08em;
-  background: color-mix(in srgb, var(--loca-purple-01) 70%, transparent);
-  vertical-align: -0.04em;
+  padding: 0 0.14em;
+  z-index: 0;
+}
+
+.best_card .txts .card_benefit .benefit_mark::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: -0.12em;
+  right: -0.12em;
+  top: 0.45em;
+  height: 0.7em;
+  background: color-mix(in srgb, var(--loca-purple-01) 92%, var(--white));
+  clip-path: polygon(0.12em 0, 100% 0, calc(100% - 0.12em) 100%, 0 100%);
+  transform: rotate(-1.2deg);
+  border-radius: 0.08em;
 }
 
 .best_card .txts .more {
