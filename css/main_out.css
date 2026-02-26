@@ -11,16 +11,17 @@ h2 {
   position: relative;
   background: url(../img/main_visual_bg.png) center center / cover no-repeat;
   width: 100%;
-  height: 100vh;
+  height: calc(100svh / var(--ui-scale-web, 1));
+  min-height: calc(100vh / var(--ui-scale-web, 1));
   overflow: hidden;
 }
 
 .main_visual .inner {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   height: 100%;
-  padding-bottom: 176px;
+  padding-bottom: 0;
 }
 
 .main_visual .main_visual_dim {
@@ -34,13 +35,14 @@ h2 {
 .main_visual .main_tit {
   position: relative;
   z-index: 1;
-  height: 500px;
+  height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  top: -100px;
+  gap: 2.75rem;
+  top: 0;
   color: var(--loca-ivory);
 }
 

@@ -1,9 +1,10 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
 
 :root {
   font-size: 16px;
+  --ui-scale-web: 0.8;
   --font_size_12: 0.75rem;
   --font_size_14: 0.875rem;
   --font_size_16: 1rem;
@@ -38,6 +39,12 @@
   --loca-purple-00: #7451c0;
   --loca-purple-01: #d3ccff;
   --Spoqa-Han-Sans: 'Spoqa Han Sans Neo', sans-serif;
+}
+
+@media (min-width: 768px) {
+  html {
+    zoom: var(--ui-scale-web);
+  }
 }
 
 body {
@@ -172,7 +179,7 @@ header .sub_menu_inner {
   min-height: 0;
 }
 
-/* (옵션) 스크롤 내려서 헤더가 투명해졌을 때(Blur) 서브메뉴도 맞춰주기 */
+/* (?듭뀡) ?ㅽ겕濡??대젮???ㅻ뜑媛 ?щ챸?댁죱????Blur) ?쒕툕硫붾돱??留욎떠二쇨린 */
 header.is_header_blur {
   border-top-color: color-mix(in srgb, var(--loca-navy-03) 55%, transparent);
 }
@@ -202,7 +209,7 @@ header .sub_menu .dep2_list > .dep2 {
   min-width: 0;
 }
 
-/* 세로 라인: 아이템 border 대신 컨테이너 라인 레이어 사용 */
+/* ?몃줈 ?쇱씤: ?꾩씠??border ???而⑦뀒?대꼫 ?쇱씤 ?덉씠???ъ슜 */
 header .sub_menu .dep2_list::before {
   content: '';
   position: absolute;
@@ -220,7 +227,7 @@ header .sub_menu .dep2_list::before {
     75% 0;
 }
 
-/* dep2 타이틀 */
+/* dep2 ??댄? */
 header .sub_menu .dep2 > a {
   font-size: 20px;
   display: inline-block;
@@ -228,7 +235,7 @@ header .sub_menu .dep2 > a {
   font-weight: 700;
 }
 
-/* dep3 리스트(선택) */
+/* dep3 由ъ뒪???좏깮) */
 header .sub_menu .dep3 {
   display: flex;
   flex-direction: column;
